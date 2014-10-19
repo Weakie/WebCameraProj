@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="WebCam_Server">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
+        <dependent-module archiveName="WebCam_Encoder.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/WebCam_Encoder/WebCam_Encoder">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="WebCam_Server"/>
+        <property name="java-output-path" value="/WebCam_Server/build/classes"/>
+    </wb-module>
+</project-modules>

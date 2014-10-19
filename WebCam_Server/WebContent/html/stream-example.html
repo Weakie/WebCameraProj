@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=320, initial-scale=1"/>
+	<title>jsmpeg streaming</title>
+	<style type="text/css">
+		body {
+			background: #333;
+			text-align: center;
+			margin-top: 10%;
+		}
+		#videoCanvas01 {
+			/* Always stretch the canvas to 320x240, regardless of its internal size. */
+			width: 320px;
+			height: 240px;
+		}
+		.videoCanvas {
+			width: 320px;
+			height: 240px;
+		}
+	</style>
+</head>
+<body>
+	<!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
+		change this internal resolution to whatever the source provides. The size the
+		canvas is displayed on the website is dictated by the CSS style.
+	-->
+	<canvas class="videoCanvas" id="videoCanvas01" width="320" height="240" >
+		<p>
+			Please use a browser that supports the Canvas Element, like
+			<a href="http://www.google.com/chrome">Chrome</a>,
+			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+		</p>
+	</canvas>
+	<canvas class="videoCanvas" id="videoCanvas02" width="320" height="240" >
+		<p>
+			Please use a browser that supports the Canvas Element, like
+			<a href="http://www.google.com/chrome">Chrome</a>,
+			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+		</p>
+	</canvas>
+	<script type="text/javascript" src="../javascript/jsmpg.js"></script>
+	
+	<script type="text/javascript">
+		// Show loading notice
+		var canvas = document.getElementById('videoCanvas01');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = '#444';
+		ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
+
+		var wsServer = (window.location.protocol == "https:"
+	        ? "wss://" : "ws://") + window.location.host
+	        + "/WebCam_Server/websocket/image";
+		// Setup the WebSocket connection and start the player
+		var client = new WebSocket( wsServer );
+		var player = new jsmpeg(client, {canvas:canvas});
+	</script>
+	<script type="text/javascript">
+		// Show loading notice
+		var canvas = document.getElementById('videoCanvas02');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = '#444';
+		ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
+
+		var wsServer = (window.location.protocol == "https:"
+	        ? "wss://" : "ws://") + window.location.host
+	        + "/WebCam_Server/websocket/image";
+		// Setup the WebSocket connection and start the player
+		var client = new WebSocket( wsServer );
+		var player = new jsmpeg(client, {canvas:canvas});
+	</script>
+</body>
+</html>
