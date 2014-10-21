@@ -4,9 +4,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.googlecode.javacv.FrameGrabber.Exception;
-import com.googlecode.javacv.OpenCVFrameGrabber;
-import com.googlecode.javacv.cpp.opencv_core.IplImage;
+import org.bytedeco.javacpp.opencv_core.IplImage;
+import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 class GrabAndToBuffer implements Runnable{
 
@@ -63,9 +62,11 @@ class GrabAndToBuffer implements Runnable{
 	
 	private synchronized void updateEvents(IplImage pFrame){
 		ByteBuffer buf = pFrame.getByteBuffer();
+		buf.flip();
 		for(ImageUpdateListener listener:this.listsners){
 			listener.updateVideoImage(buf);
 		}
+		buf.clear();
 	}
 
 	@Override

@@ -196,7 +196,7 @@ public:
 		}
 
 		if (got_output) {
-			cout<<"Write frame "<<framePts<<" (size="<<pkt.size<<")"<<endl;
+			//cout<<"Write frame "<<framePts<<" (size="<<pkt.size<<")"<<endl;
 			if(pkt.size>outSizeLimit){
 				return -3;
 			}

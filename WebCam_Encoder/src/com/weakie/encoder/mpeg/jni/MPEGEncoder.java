@@ -2,11 +2,9 @@ package com.weakie.encoder.mpeg.jni;
 
 import java.nio.ByteBuffer;
 
-public class MPEGEncoder {
-	
-	//format value refer to FFMPEG
-	public static final int AV_PIX_FMT_RGB24 = 2;
-	public static final int AV_PIX_FMT_BGR24 = 3;
+import com.weakie.encoder.Encoder;
+
+public class MPEGEncoder implements Encoder{
 	
 	public static MPEGEncoder createAndInitInstance(int width,int height,int frameSize,int srcFmt){
 		try {

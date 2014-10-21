@@ -4,9 +4,8 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import com.weakie.encoder.mpeg.jni.InvalidByteBufferSizeException;
-import com.weakie.encoder.mpeg.jni.InvalidPointerException;
-import com.weakie.encoder.mpeg.jni.MPEGEncoder;
+import com.weakie.encoder.Encoder;
+import com.weakie.encoder.EncoderBuilder;
 import com.weakie.websocket.videostream.VideoEndpoint;
 
 class EncoderAndDispatcher implements Runnable {
@@ -22,7 +21,7 @@ class EncoderAndDispatcher implements Runnable {
 	
 	@Override
 	public void run() {
-		MPEGEncoder encoder = MPEGEncoder.createAndInitInstance(640, 480, 640*480*3, MPEGEncoder.AV_PIX_FMT_BGR24);
+		Encoder encoder = EncoderBuilder.buildMPEGEncoderJavaCV(640, 480, 640*480*3, EncoderBuilder.AV_PIX_FMT_BGR24);
 		try{
 			ByteBuffer bufin = null;
 			while(!isEnd){
@@ -38,11 +37,9 @@ class EncoderAndDispatcher implements Runnable {
 				long time3 = System.currentTimeMillis();
 				System.out.println("times in Encoder: "+(time3-time2)+" "+(time2-time1)+" "+(time1-time0));
 			}
-		} catch (InvalidByteBufferSizeException e) {
-			e.printStackTrace();
-		} catch (InvalidPointerException e) {
-			e.printStackTrace();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			encoder.destroy();
