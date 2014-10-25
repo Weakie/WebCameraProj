@@ -17,23 +17,93 @@
 		.videoCanvas {
 			width: 320px;
 			height: 240px;
+			/*hahaha*/
+			position: absolute;
+        	left: 2in;
+        	top: 2in;
+		}
+		#videoCanvas02 {
+			width: 320px;
+			height: 240px;
+			position: absolute;
+        	left: 2in;
+        	top: 2in;
+		    margin: 0px;
+		    border: 1px solid;
+		}
+		/*div{
+		   	width: 320px;
+			height: 240px;
+			position: absolute;
+        	left: 2in;
+        	top: 2in;
+		    margin: 0px;
+		    border: 1px solid;
+		}*/
+		.grid{
+			background: 
+		    -webkit-linear-gradient(top, transparent 39px, blue 40px), 
+		    -webkit-linear-gradient(left, transparent 39px, blue 40px)
+		    ;
+		    background: 
+		    -moz-linear-gradient(top, transparent 39px, blue 40px), 
+		    -moz-linear-gradient(left, transparent 39px, blue 40px)
+		    ;
+		    background: 
+		    -o-linear-gradient(top, transparent 39px, blue 40px), 
+		    -o-linear-gradient(left, transparent 39px, blue 40px)
+		    ;
+		    background: 
+		    -ms-linear-gradient(top, transparent 39px, blue 40px), 
+		    -ms-linear-gradient(left, transparent 39px, blue 40px)
+		    ;
+		    background:
+		        linear-gradient(top, transparent 39px, blue 40px),
+		        linear-gradient(left, transparent 39px, blue 40px)
+		    ;
+		    -webkit-background-size: 40px 40px;
+		    -moz-background-size: 40px 40px;
+		    background-size: 40px 40px;
 		}
 	</style>
 </head>
 <body>
+	<script type="text/javascript"> 
+		function cnvs_getCoordinates(e)
+		{
+			x=e.clientX;
+			y=e.clientY;
+			document.getElementById("xycoordinates").innerHTML="Coordinates: (" + x + "," + y + ")";
+			draw(x,y);
+		}
+		 
+		function draw(x,y)
+		{
+			var c=document.getElementById("videoCanvas02");
+			var cxt=c.getContext("2d");
+			cxt.fillStyle="#FF0000";
+			cxt.beginPath();
+			ctx.fillRect(x,y,10,10);
+			cxt.closePath();
+			cxt.fill();
+		}
+		function cnvs_clearCoordinates()
+		{
+			document.getElementById("xycoordinates").innerHTML="";
+		}
+	</script>
+	<!-- <div style="z-index: 3; " class="grid">
+	
+	</div> -->
+	<canvas style="z-index: 3; " id="videoCanvas02" class="grid" onmousemove="cnvs_getCoordinates(event)" onmouseout="cnvs_clearCoordinates()">
+	</canvas>
+	<div id="xycoordinates"></div>
+	
 	<!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
 		change this internal resolution to whatever the source provides. The size the
 		canvas is displayed on the website is dictated by the CSS style.
 	-->
-	<canvas class="videoCanvas" id="videoCanvas01" width="320" height="240" >
-		<p>
-			Please use a browser that supports the Canvas Element, like
-			<a href="http://www.google.com/chrome">Chrome</a>,
-			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
-			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
-		</p>
-	</canvas>
-	<canvas class="videoCanvas" id="videoCanvas02" width="320" height="240" >
+	<canvas style="z-index: 2; " class="videoCanvas" id="videoCanvas01" width="320" height="240" >
 		<p>
 			Please use a browser that supports the Canvas Element, like
 			<a href="http://www.google.com/chrome">Chrome</a>,
@@ -42,7 +112,6 @@
 		</p>
 	</canvas>
 	<script type="text/javascript" src="../javascript/jsmpg.js"></script>
-	
 	<script type="text/javascript">
 		// Show loading notice
 		var canvas = document.getElementById('videoCanvas01');
@@ -57,19 +126,6 @@
 		var client = new WebSocket( wsServer );
 		var player = new jsmpeg(client, {canvas:canvas});
 	</script>
-	<script type="text/javascript">
-		// Show loading notice
-		var canvas = document.getElementById('videoCanvas02');
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle = '#444';
-		ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
-
-		var wsServer = (window.location.protocol == "https:"
-	        ? "wss://" : "ws://") + window.location.host
-	        + "/WebCam_Server/websocket/image";
-		// Setup the WebSocket connection and start the player
-		var client = new WebSocket( wsServer );
-		var player = new jsmpeg(client, {canvas:canvas});
-	</script>
+	
 </body>
 </html>

@@ -44,7 +44,7 @@ class GrabAndToBuffer implements Runnable{
 				long time2=System.currentTimeMillis();
 				pFrame = grabber.grab();
 				long time3=System.currentTimeMillis();
-				System.out.println("Frame: "+ count++ +" time grab: "+(time3-time2)+" time update: "+(time2-time1));
+				//System.out.println("Frame: "+ count++ +" time grab: "+(time3-time2)+" time update: "+(time2-time1));
 	  			if(isEnd){
 					break;
 				}

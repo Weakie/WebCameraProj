@@ -35,7 +35,7 @@ class EncoderAndDispatcher implements Runnable {
 				long time2 = System.currentTimeMillis();
 				this.broadcast(size);
 				long time3 = System.currentTimeMillis();
-				System.out.println("times in Encoder: "+(time3-time2)+" "+(time2-time1)+" "+(time1-time0));
+				//System.out.println("times in Encoder: "+(time3-time2)+" "+(time2-time1)+" "+(time1-time0));
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ class EncoderAndDispatcher implements Runnable {
 					bufQueue.clear();
 					bufQueue.add(image);
 				}
-				System.out.println(bufQueue.size());
+				//System.out.println(bufQueue.size());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

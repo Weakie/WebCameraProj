@@ -32,6 +32,7 @@ public class VideoEndpoint extends Endpoint {
 		this.session = session;
 		// Set maximum messages size to 10.000 bytes.
 		//session.setMaxTextMessageBufferSize(10000);
+		session.setMaxBinaryMessageBufferSize(500000);
 		connections.add(this);
 		
 		// Send head data while open
