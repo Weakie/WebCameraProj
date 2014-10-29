@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.weakie.encoder.Encoder;
 import com.weakie.encoder.EncoderBuilder;
-import com.weakie.websocket.videostream.VideoEndpoint;
+import com.weakie.websocket.videostream.VideoEndpointAsync;
 
 class EncoderAndDispatcher implements Runnable {
 	
@@ -35,7 +35,7 @@ class EncoderAndDispatcher implements Runnable {
 				long time2 = System.currentTimeMillis();
 				this.broadcast(size);
 				long time3 = System.currentTimeMillis();
-				//System.out.println("times in Encoder: "+(time3-time2)+" "+(time2-time1)+" "+(time1-time0));
+				System.out.println("times in Encoder: "+(time3-time2)+" "+(time2-time1)+" "+(time1-time0));
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -53,7 +53,7 @@ class EncoderAndDispatcher implements Runnable {
 		bufwrite.put(bufout);
 		bufwrite.flip();
 		bufout.clear();
-		VideoEndpoint.broadcast(bufwrite, false);
+		VideoEndpointAsync.broadcast(bufwrite, false);
 	}
 	
 	private  ImageUpdateListener listener = new ImageUpdateListener(){

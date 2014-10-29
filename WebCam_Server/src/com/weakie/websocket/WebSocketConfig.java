@@ -24,6 +24,7 @@ import javax.websocket.server.ServerApplicationConfig;
 import javax.websocket.server.ServerEndpointConfig;
 
 import com.weakie.websocket.videostream.VideoEndpoint;
+import com.weakie.websocket.videostream.VideoEndpointAsync;
 
 public class WebSocketConfig implements ServerApplicationConfig {
 
@@ -35,9 +36,9 @@ public class WebSocketConfig implements ServerApplicationConfig {
         /**
          * load the WebSocket code
          */
-        if (scanned.contains(VideoEndpoint.class)) {
+        if (scanned.contains(VideoEndpointAsync.class)) {
             result.add(ServerEndpointConfig.Builder.create(
-            		VideoEndpoint.class,
+            		VideoEndpointAsync.class,
                     "/websocket/image").build());
         }
 

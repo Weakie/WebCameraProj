@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.weakie.stream.process.MainLoop;
 import com.weakie.websocket.videostream.VideoEndpoint;
+import com.weakie.websocket.videostream.VideoEndpointAsync;
 
 /**
  * Servlet implementation class VideoDispatcher
@@ -72,7 +73,7 @@ public class VideoDispatcher extends HttpServlet {
 			buf.clear();//(position=0,limit=capacity)
 			buf.put(data,0,length);//(position=length)
 			buf.flip();//(position=0,limit=old position)
-			VideoEndpoint.broadcast(buf, false);
+			VideoEndpointAsync.broadcast(buf, false);
 		}
 	}
 
